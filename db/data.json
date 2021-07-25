@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "type": "cash",
+    "balance": 30000,
+    "currency": "UAH"
+  },
+  {
+    "id": 2,
+    "type": "card",
+    "balance": 3000,
+    "currency": "UAH"
+  }
+]
