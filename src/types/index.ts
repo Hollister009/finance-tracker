@@ -5,7 +5,7 @@ export enum WalletType {
   deposit = 'deposit'
 }
 
-type CurrencyCode = 'UAH' | 'USD' | 'EUR';
+export type CurrencyCode = 'UAH' | 'USD' | 'EUR';
 
 export type IWalletDTO = {
   id: number;
