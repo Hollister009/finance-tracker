@@ -1,12 +1,12 @@
 import React from 'react';
 import { PieChart } from 'reaviz';
-import { IWalletDTO, CurrencyFormatterInput } from '../../types';
-import { regularFormatCurrency } from '../../utils';
+import { IWalletDTO, CurrencyFormatterInput } from 'types';
+import { regularFormatCurrency } from 'utils';
 
 import classes from './CircularBalance.module.css';
 
 export interface CircularBalanceProps {
-  wallets: IWalletDTO[];
+  wallets?: IWalletDTO[];
 }
 
 const CircularBalance = (props: CircularBalanceProps) => {
@@ -19,8 +19,14 @@ const CircularBalance = (props: CircularBalanceProps) => {
 
   const accumulatedBalance: CurrencyFormatterInput = {
     value: wallets.reduce((acc, { balance }) => acc + balance, 0),
-    currency: wallets[0].currency,
+    currency: wallets[0]?.currency,
   };
+
+  if (!wallets.length) {
+    return (
+      <h2>The wallets data is Empty!</h2>
+    )
+  }
 
   return (
     <div className={classes.container}>
