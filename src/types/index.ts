@@ -5,11 +5,16 @@ export enum WalletType {
   deposit = 'deposit'
 }
 
-export type CurrencyCode = 'UAH' | 'USD' | 'EUR';
+type CurrencyCode = 'UAH' | 'USD' | 'EUR';
 
 export type IWalletDTO = {
   id: number;
   type: WalletType | string;
   balance: number;
-  currency: CurrencyCode | string;
+  currency?: CurrencyCode;
+};
+
+export type CurrencyFormatterInput = {
+  value: number;
+  currency?: CurrencyCode;
 };

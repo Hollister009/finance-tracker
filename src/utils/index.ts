@@ -1,12 +1,7 @@
 import { CURRENCY_SYMBOLS } from '../constants';
-import { CurrencyCode } from '../types';
+import { CurrencyFormatterInput } from '../types';
 
 const formatter = new Intl.NumberFormat('en-US', { style: 'decimal' });
-
-type FormatInput = {
-  value: number;
-  currency?: CurrencyCode;
-};
 
 const monoFormatterRe = /([,])|([.])/g;
 const monoFormatterReReplacer = (match: string, $1?: string, $2?: string) => {
@@ -20,7 +15,7 @@ const monoFormatterReReplacer = (match: string, $1?: string, $2?: string) => {
 export const monoFormatCurrency = ({
   value,
   currency = 'UAH',
-}: FormatInput): string =>
+}: CurrencyFormatterInput): string =>
   `${formatter
     .format(value)
     .replace(monoFormatterRe, monoFormatterReReplacer)} ${
@@ -32,5 +27,5 @@ export const monoFormatCurrency = ({
 export const regularFormatCurrency = ({
   value,
   currency = 'UAH',
-}: FormatInput): string =>
+}: CurrencyFormatterInput): string =>
   `${CURRENCY_SYMBOLS[currency]}${formatter.format(value)}`;

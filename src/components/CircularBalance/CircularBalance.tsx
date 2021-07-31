@@ -1,6 +1,7 @@
 import React from 'react';
 import { PieChart } from 'reaviz';
-import { IWalletDTO } from '../../types';
+import { IWalletDTO, CurrencyFormatterInput } from '../../types';
+import { regularFormatCurrency } from '../../utils';
 
 import classes from './CircularBalance.module.css';
 
@@ -16,15 +17,15 @@ const CircularBalance = (props: CircularBalanceProps) => {
     data: item.balance,
   }));
 
-  const accumulatedBalance = wallets.reduce(
-    (acc, { balance }) => acc + balance,
-    0
-  );
+  const accumulatedBalance: CurrencyFormatterInput = {
+    value: wallets.reduce((acc, { balance }) => acc + balance, 0),
+    currency: wallets[0].currency,
+  };
 
   return (
     <div className={classes.container}>
       <p className={classes.totalBalance}>
-        {accumulatedBalance} UAH
+        {regularFormatCurrency(accumulatedBalance)}
       </p>
       <PieChart width={300} height={300} data={transformedData} />
     </div>
