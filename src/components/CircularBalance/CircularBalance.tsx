@@ -3,7 +3,7 @@ import { PieChart } from 'reaviz';
 import { IWalletDTO, CurrencyFormatterInput } from 'types';
 import { regularFormatCurrency } from 'utils';
 
-import classes from './CircularBalance.module.css';
+import classes from './CircularBalance.module.scss';
 
 export interface CircularBalanceProps {
   wallets?: IWalletDTO[];
